@@ -279,6 +279,11 @@ import * as _ from 'lodash';
     this.setState({
         checkBoxes: checkBoxes
     });
+
+    this.duplicates();
+    setTimeout(() => {
+        return this.props.changeState(this.state, this.props.index);
+    },0);
   }
 
   duplicates(){
@@ -294,4 +299,37 @@ import * as _ from 'lodash';
           })
       }
   }
+
+  removeOption(index){
+      let checkBoxes = this.state.checkBoxes;
+      checkBoxes.splice(index,1);
+      this.setState({
+          checkBoxes: checkBoxes
+      });
+      this.duplicates();
+      setTimeout(() => {
+        return this.props.changeState(this.state, this.props.index);
+      },0);
+  }
+
+  addOption(){
+      let checkBox = {
+        title: '',
+        value: '',
+        selected: false
+      };
+
+      let checkBoxes = this.state.checkBoxes;
+      checkBoxes.push(checkbox);
+      this.setState({
+          checkBoxes: checkBoxes
+      });
+
+      this.duplicates();
+      setTimeout(() => {
+        return this.props.changeState(this.state,this.props.index);
+      }, 0);
+  }
 }
+
+export default CheckBoxes;
